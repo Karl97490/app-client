@@ -1,5 +1,10 @@
+import "../styles/HomePage.css"
+
 export const HomePage = () => {
     return (
-        <h1>This is HomePage component...</h1>
+        <div className="home-page">
+            <h1>Discover the world of sandwiches..!</h1>
+            <button className="discover">Discover</button>
+        </div>
     )
 }

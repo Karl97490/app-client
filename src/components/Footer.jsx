@@ -4,7 +4,7 @@ export const Footer = () => {
     return(
         <div className="footer">
             <div className="logo-container">
-                <img src={Baguette} alt="Logo" width="40px"/>
+                <img src={Baguette} alt="Logo" width="35px"/>
                 {/* <span id="title">Sandwich Maker</span> */}
             </div>
         </div>

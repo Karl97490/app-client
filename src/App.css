@@ -8,16 +8,19 @@
 }
 
 .page {
-    /* background-color: red; */
+    /* background-color: blue; */
+    width: 100%;
     flex: 1;
+    display: flex;
 }
+
 
 .navbar {
     width: 94%;
     height: 50px;
     background-color: rgba(0, 0, 255, 0.14);
     border-radius: 10rem;
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     display: flex;
     justify-content: space-between;
 
@@ -48,7 +51,7 @@
 
 .footer {
     width: 100%;
-    height: 110px;
+    height: 100px;
     background-color: rgba(0, 0, 255, 0.14);
     display: flex;
     justify-content: center;
