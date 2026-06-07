@@ -1,5 +1,7 @@
 import "../styles/SandwichesList.css"
+import "../styles/Cards.css"
 import { useState, useEffect } from "react"
+import { Cards } from "../components/Cards"
 import axios from "axios"
 
 export const SandwichesList = () => {
@@ -11,7 +13,9 @@ export const SandwichesList = () => {
 
     const getData = async () => {
         try {
-            const response = await axios.get()
+            const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/sandwiches`)
+            console.log(response.data)
+            setSandwiches(response.data)
         } catch (error) {
             console.log(error)
         }
@@ -19,12 +23,14 @@ export const SandwichesList = () => {
 
     return (
         <div className="sandwiches-page">
-            <h1>This is SandwichesList component...</h1>
-            {sandwiches.map(sandwich => {
-                return(
-                    <h2>Title</h2>
-                )
-            })}
+            <h2>This is SandwichesList component...</h2>
+            <section className="cards-container">
+                {sandwiches.map(sandwich => {
+                    return (
+                        <Cards key={sandwich.id} obj={sandwich} />
+                    )
+                })}
+            </section>
         </div>
     )
 }

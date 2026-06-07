@@ -1,0 +1,86 @@
+.cards-container {
+    /* background-color: rgba(255, 0, 0, 0.194); */
+    width: 90%;
+    outline: 1px solid;
+    margin: 0 auto;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border-radius: 0.8rem;
+
+    .card {
+        /* background-color: rgba(0, 255, 255, 0.151); */
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        outline: 2px solid;
+        border-radius: 5%;
+        overflow: hidden;
+
+        .logo-container {
+            /* background-color: beige; */
+            height: 150px;
+            overflow: hidden;
+
+            img {
+                width: 110%;
+                margin: auto;
+            }
+        }
+
+        .infos {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            /* background-color: rgba(255, 0, 0, 0.169); */
+            padding: 0.5rem 0;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+            align-content: center;
+        }
+
+        .details {
+            /* background-color: rgb(220, 245, 228); */
+            display: grid;
+            grid-auto-flow: column;
+            /* border: 1px solid; */
+            align-items: center;
+
+            #title {
+                /* background-color: rgba(255, 0, 0, 0.367); */
+                /* padding: 0 1.3rem; */
+            }
+
+            #type {
+                /* background-color: rgba(0, 0, 255, 0.229); */
+                border-left: 2px solid;
+                padding: 1rem 0;
+            }
+
+            #ingredients {
+                /* background-color: rgba(0, 0, 255, 0.229); */
+                text-align: left;
+                border-left: 2px solid;
+                grid-column: span 4;
+
+                li {
+                    border-bottom: 1px solid;
+                    padding: 0.2rem 0 0.2rem 0.3rem;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+
+        .description {
+            background-color: rgb(220, 245, 228);
+        }
+    }
+}
