@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { SandwichesList } from "./pages/SandwichesList";
+import { AddSandwich } from "./pages/AddSandwich";
 import { BreadsList } from "./pages/BreadsList";
 import { Footer } from "./components/Footer";
 import "./App.css";
@@ -17,7 +18,7 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/sandwiches" element={<SandwichesList />}></Route>
           <Route path="/sandwiches/details/:sandwichId" element={undefined}></Route>
-          <Route path="/sandwiches/add" element={undefined}></Route>
+          <Route path="/sandwiches/add" element={<AddSandwich />}></Route>
           <Route path="/sandwiches/edit/:sandwichId" element={undefined}></Route>
 
           <Route path="/breads" element={<BreadsList />}></Route>
