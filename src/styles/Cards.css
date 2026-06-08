@@ -31,6 +31,14 @@
             }
         }
 
+        .btn-container {
+            /* background-color: red; */
+            padding: 0.5rem 0;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
         .infos {
             display: flex;
             flex-direction: column;
@@ -48,7 +56,7 @@
             /* background-color: rgb(220, 245, 228); */
             display: grid;
             grid-auto-flow: column;
-            /* border: 1px solid; */
+            border-bottom: 2px solid;
             align-items: center;
 
             #title {
@@ -72,7 +80,6 @@
                 li {
                     background-color: rgba(208, 208, 208, 0.079);
                     padding: 0.1rem;
-                    /* outline: 1px solid; */
                     font-size: 1.3em;
                     display: flex;
                     flex-direction: column;
@@ -82,10 +89,6 @@
                         font-size: 11px;
                         font-weight: 600;
                     }
-
-                    /* &:last-child {
-                        border-bottom: none;
-                    } */
                 }
             }
         }

@@ -1,4 +1,6 @@
-export const Cards = ({ obj }) => {
+import { NavLink } from "react-router-dom";
+
+export const Cards = ({ obj, onDelete }) => {
   return (
     <div className="card">
       <div className="logo-container">
@@ -68,6 +70,16 @@ export const Cards = ({ obj }) => {
                     <p>{obj.description}</p>
                 </div> */}
       </div>
+      {obj.id.length > 2 && (
+        <div className="btn-container">
+          <NavLink to={`edit/${obj.id}`}>
+            <button id="edit-btn">EDIT</button>
+          </NavLink>
+          <button id="edit-btn" onClick={() => onDelete(obj.id)}>
+            DELETE
+          </button>
+        </div>
+      )}
     </div>
   );
 };

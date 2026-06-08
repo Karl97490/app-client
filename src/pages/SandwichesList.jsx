@@ -3,10 +3,12 @@ import "../styles/Cards.css";
 import { useState, useEffect } from "react";
 import { Cards } from "../components/Cards";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const SandwichesList = () => {
   const [sandwiches, setSandwiches] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -22,6 +24,22 @@ export const SandwichesList = () => {
       setSandwiches(response.data);
     } catch (error) {
       console.log(error);
+      navigate("/error");
+    }
+  };
+
+  const handleDelete = async (sandwicheId) => {
+    console.log("delete sandwich... at " + sandwicheId);
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwicheId}`,
+      );
+      // console.log(response);
+      setIsLoading(false);
+      getData();
+    } catch (error) {
+      console.log(error);
+      navigate("/error");
     }
   };
 
@@ -34,7 +52,9 @@ export const SandwichesList = () => {
       <h2>This is SandwichesList component...</h2>
       <section className="cards-container">
         {sandwiches.map((sandwich) => {
-          return <Cards key={sandwich.id} obj={sandwich} />;
+          return (
+            <Cards key={sandwich.id} obj={sandwich} onDelete={handleDelete} />
+          );
         })}
       </section>
     </div>

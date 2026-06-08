@@ -1,4 +1,6 @@
 import "../styles/Form.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
   return (
@@ -148,10 +150,14 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
             />
           </label>
         </fieldset>
-
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? <span>Loading...</span> : <span>Create Sandwich</span>}
-        </button>
+        <div className="btn-container">
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? <span>Loading...</span> : <span>Create Sandwich</span>}
+          </button>
+          <Link to="/sandwiches">
+            <button>Back</button>
+          </Link>
+        </div>
       </form>
     </div>
   );
