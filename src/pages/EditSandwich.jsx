@@ -1,10 +1,15 @@
-import "../styles/AddSandwich.css";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Form } from "../components/Form";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Form } from "../components/Form";
+import "../styles/EditSandwich.css";
 
-export const AddSandwich = () => {
+export const EditSandwich = () => {
+  const [sandwich, setSandwich] = useState(null);
+  // console.log(sandwich);
+  const { sandwichId } = useParams();
+  const navigate = useNavigate();
+
   const initialStateForm = {
     name: "",
     nickname: "",
@@ -26,8 +31,22 @@ export const AddSandwich = () => {
   const [stateForm, setStateForm] = useState(initialStateForm);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    getData();
+  }, []);
 
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}`,
+      );
+      // console.log(response.data);
+      setSandwich(response.data);
+      setStateForm(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     const section = e.target.dataset.section;
@@ -54,8 +73,8 @@ export const AddSandwich = () => {
     e.preventDefault();
     const body = stateForm;
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/sandwiches`,
+      const response = await axios.patch(
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}`,
         body,
       );
       navigate("/sandwiches");
@@ -67,8 +86,8 @@ export const AddSandwich = () => {
   };
 
   return (
-    <div className="add-page">
-      <h2>This is AddSandwich component...</h2>
+    <div className="edit-page">
+      <h1>This is EditSandwich component...</h1>;
       <Form
         onChange={handleChange}
         stateForm={stateForm}

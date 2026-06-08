@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { SandwichesList } from "./pages/SandwichesList";
 import { AddSandwich } from "./pages/AddSandwich";
+import { EditSandwich } from "./pages/EditSandwich";
 import { BreadsList } from "./pages/BreadsList";
 import { Footer } from "./components/Footer";
 import { ErrorPage } from "./pages/ErrorPage";
@@ -24,7 +25,7 @@ function App() {
           <Route path="/sandwiches/add" element={<AddSandwich />}></Route>
           <Route
             path="/sandwiches/edit/:sandwichId"
-            element={undefined}
+            element={<EditSandwich />}
           ></Route>
 
           <Route path="/breads" element={<BreadsList />}></Route>
