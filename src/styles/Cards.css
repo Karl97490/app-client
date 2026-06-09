@@ -24,10 +24,11 @@
             /* background-color: beige; */
             height: 150px;
             overflow: hidden;
+            display: flex;
 
             img {
                 width: 110%;
-                margin: auto;
+                align-self: center;
             }
         }
 

@@ -2,31 +2,75 @@ import "../styles/BreadsList.css";
 import "../styles/Cards.css";
 import { useState, useEffect } from "react";
 import { Cards } from "../components/Cards";
-import axios from "axios";
+import { Search } from "../components/Search";
+import { Filter } from "../components/Filter";
+import { Sort } from "../components/Sort";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const BreadsList = () => {
   const [breads, setBreads] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [querySearch, setQuerySearch] = useState("");
+  const [queryFilter, setQueryFilter] = useState("");
+  const [querySort, setQuerySort] = useState("");
+
+  // Check for multiple rendering component
+  // console.log(querySort);
+  // console.log(queryFilter);
+  // console.log(querySort);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [querySearch, queryFilter, querySort]);
 
   const getData = async () => {
+    let url = "/breads?";
+    const params = [];
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/breads`,
+      if (querySearch) {
+        params.push(`name_like=${querySearch}`);
+      }
+      // if (queryFilter) {
+      //   params.push(`ingredients.${queryFilter}_ne=null`);
+      // }
+      if (querySort) {
+        params.push(`_sort=${querySort}`);
+      }
+      url += params.join("&");
+      let response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}${url}`,
       );
+      // console.log(response.data);
       setIsLoading(false);
-      console.log(response.data);
-      setBreads(response.data);
+      if (response.data.length) {
+        setBreads(response.data);
+      }
     } catch (error) {
       console.log(error);
       navigate("/error");
     }
+  };
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    // console.log(name, value);
+    if (name === "filter") {
+      setQueryFilter(value);
+    } else if (name === "search") {
+      setQuerySearch(value);
+    } else {
+      setQuerySort(value);
+    }
+  };
+
+  const handleReset = () => {
+    setQueryFilter("");
+    setQuerySearch("");
+    setQuerySort("");
   };
 
   if (isLoading) {
@@ -36,12 +80,17 @@ export const BreadsList = () => {
   return (
     <div className="breads-page">
       <h2>This is BreadsList component...</h2>
+      <div className="inputs-container">
+        <button type="reset" id="reset-btn" onClick={handleReset}>
+          Reset
+        </button>
+        <Search query={querySearch} onChange={handleChange} />
+        <Sort query={querySort} onChange={handleChange} />
+        <Filter query={queryFilter} onChange={handleChange} />
+      </div>
       <section className="cards-container">
         {breads.map((bread) => {
-          return (
-            // <h2>{bread.title}</h2>
-            <Cards key={bread.id} obj={bread} />
-          );
+          return <Cards key={bread.id} obj={bread} />;
         })}
       </section>
     </div>

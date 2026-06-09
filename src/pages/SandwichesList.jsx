@@ -6,6 +6,7 @@ import { Cards } from "../components/Cards";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../components/Search";
 import { Filter } from "../components/Filter";
+import { Sort } from "../components/Sort";
 import axios from "axios";
 
 export const SandwichesList = () => {
@@ -14,29 +15,37 @@ export const SandwichesList = () => {
 
   const [querySearch, setQuerySearch] = useState("");
   const [queryFilter, setQueryFilter] = useState("");
+  const [querySort, setQuerySort] = useState("");
+
+  // Check for multiple rendering component
+  // console.log(querySort);
+  // console.log(queryFilter);
+  // console.log(querySort);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getData();
-  }, [querySearch, queryFilter]);
+  }, [querySearch, queryFilter, querySort]);
 
   const getData = async () => {
+    let url = "/sandwiches?";
+    const params = [];
     try {
-      let response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/sandwiches`,
-      );
       if (querySearch) {
-        response = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/sandwiches?name_like=${querySearch}`,
-        );
+        params.push(`name_like=${querySearch}`);
       }
       if (queryFilter) {
-        response = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/sandwiches?ingredients.${queryFilter}_ne=null`,
-        );
+        params.push(`ingredients.${queryFilter}_ne=null`);
       }
-      console.log(response.data);
+      if (querySort) {
+        params.push(`_sort=${querySort}`);
+      }
+      url += params.join("&");
+      let response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}${url}`,
+      );
+      // console.log(response.data);
       setIsLoading(false);
       if (response.data.length) {
         setSandwiches(response.data);
@@ -49,19 +58,20 @@ export const SandwichesList = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    console.log(name, value);
+    // console.log(name, value);
     if (name === "filter") {
       setQueryFilter(value);
-      setQuerySearch("");
-    } else {
+    } else if (name === "search") {
       setQuerySearch(value);
-      setQueryFilter("");
+    } else {
+      setQuerySort(value);
     }
   };
 
   const handleReset = () => {
     setQueryFilter("");
     setQuerySearch("");
+    setQuerySort("");
   };
 
   const handleDelete = async (sandwicheId) => {
@@ -90,7 +100,8 @@ export const SandwichesList = () => {
           Reset
         </button>
         <Search query={querySearch} onChange={handleChange} />
-        <Filter qurty={queryFilter} onChange={handleChange} />
+        <Sort query={querySort} onChange={handleChange} />
+        <Filter query={queryFilter} onChange={handleChange} />
       </div>
       <section className="cards-container">
         {sandwiches.map((sandwich) => {
