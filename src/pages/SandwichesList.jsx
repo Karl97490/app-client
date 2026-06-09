@@ -1,4 +1,5 @@
 import "../styles/SandwichesList.css";
+import "../styles/FormsAction.css";
 import "../styles/Cards.css";
 import { useState, useEffect } from "react";
 import { Cards } from "../components/Cards";
@@ -58,6 +59,11 @@ export const SandwichesList = () => {
     }
   };
 
+  const handleReset = () => {
+    setQueryFilter("");
+    setQuerySearch("");
+  };
+
   const handleDelete = async (sandwicheId) => {
     try {
       const response = await axios.delete(
@@ -80,6 +86,9 @@ export const SandwichesList = () => {
     <div className="sandwiches-page">
       <h2>This is SandwichesList component...</h2>
       <div className="inputs-container">
+        <button type="reset" id="reset-btn" onClick={handleReset}>
+          Reset
+        </button>
         <Search query={querySearch} onChange={handleChange} />
         <Filter qurty={queryFilter} onChange={handleChange} />
       </div>

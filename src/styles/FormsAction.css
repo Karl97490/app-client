@@ -1,0 +1,28 @@
+.inputs-container {
+  /* background-color: red; */
+  display: flex;
+  width: 90%;
+  margin: 1rem auto;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.search-bar {
+  /* background-color: red; */
+  width: fit-content;
+  display: grid;
+  flex: 1;
+  /* grid-template-columns: auto 1fr;
+  grid-template-rows: max-content; */
+  /* margin: 1rem auto; */
+
+  span {
+    background-color: rgba(174, 174, 174, 0.054);
+    border: 1px solid #3333331d;
+    align-content: center;
+    font-size: 0.9em;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+  }
+
+}
