@@ -1,12 +1,14 @@
 import "../styles/SandwichesList.css";
 import "../styles/FormsAction.css";
-import "../styles/Cards.css";
+
 import { useState, useEffect } from "react";
 import { Cards } from "../components/Cards";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../components/Search";
 import { Filter } from "../components/Filter";
 import { Sort } from "../components/Sort";
+import { NavLink } from "react-router-dom";
+
 import axios from "axios";
 
 export const SandwichesList = () => {
@@ -96,7 +98,7 @@ export const SandwichesList = () => {
     <div className="sandwiches-page">
       <h2>This is SandwichesList component...</h2>
       <div className="inputs-container">
-        <button type="reset" id="reset-btn" onClick={handleReset}>
+        <button type="reset" className="reset-btn" onClick={handleReset}>
           Reset
         </button>
         <Search query={querySearch} onChange={handleChange} />
@@ -104,6 +106,9 @@ export const SandwichesList = () => {
         <Filter query={queryFilter} onChange={handleChange} />
       </div>
       <section className="cards-container">
+        <NavLink to="add">
+          <button id="add-btn">Create your own</button>
+        </NavLink>
         {sandwiches.map((sandwich) => {
           return (
             <Cards key={sandwich.id} obj={sandwich} onDelete={handleDelete} />

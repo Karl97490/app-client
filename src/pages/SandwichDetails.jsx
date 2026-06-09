@@ -1,6 +1,8 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import axios from "axios";
+
 import "../styles/SandwichDetails.css";
 
 export const SandwichDetails = () => {
@@ -17,10 +19,10 @@ export const SandwichDetails = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}`,
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}?_expand=bread`,
       );
       setIsLoading(false);
-      console.log(response);
+      // console.log(response.data);
       setSandwich(response.data);
     } catch (error) {
       console.log(error);
@@ -62,6 +64,19 @@ export const SandwichDetails = () => {
               <dt>City</dt>
               <dd>{sandwich.location.city}</dd>
             </dl>
+          </article>
+
+          <article className="details-card">
+            <h2>Bread</h2>
+            <ul>
+              <li>Name: {sandwich.bread.name}</li>
+              <li>Type: {sandwich.bread.type}</li>
+              <li>Origin: {sandwich.bread.origin}</li>
+              <li>Ingredients: {}</li>
+            </ul>
+            <NavLink to={`/breads/details/${sandwich.bread.id}`}>
+              <button>More</button>
+            </NavLink>
           </article>
 
           <article className="details-card">

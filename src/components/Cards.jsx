@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "../styles/Cards.css";
 
 export const Cards = ({ obj, onDelete }) => {
   return (
