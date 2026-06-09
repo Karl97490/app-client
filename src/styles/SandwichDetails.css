@@ -89,3 +89,40 @@
         height: 250px;
     }
 }
+
+.comments-section {
+    margin-top: 3rem;
+}
+
+.comments-section h2 {
+    margin-bottom: 1rem;
+}
+
+.comments-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.comment-card {
+    padding: 1rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.comment-header span {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.comment-card p {
+    margin: 0;
+    line-height: 1.5;
+}

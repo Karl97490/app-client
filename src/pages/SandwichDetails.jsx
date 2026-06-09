@@ -1,5 +1,6 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Comment } from "../components/Comment";
 
 import axios from "axios";
 
@@ -19,7 +20,7 @@ export const SandwichDetails = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}?_expand=bread`,
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}?_expand=bread&_embed=comments`,
       );
       setIsLoading(false);
       // console.log(response.data);
@@ -91,6 +92,16 @@ export const SandwichDetails = () => {
             </ul>
           </article>
         </section>
+        <section className="comments-section">
+          <h2>Comments</h2>
+
+          <div className="comments-list">
+            {sandwich.comments.map((comment) => {
+              return <Comment key={comment.id} obj={comment} />;
+            })}
+          </div>
+        </section>
+
         <div className="btn-container">
           {sandwich.id.length > 2 && (
             <NavLink to={`/sandwiches/edit/${sandwich.id}`}>
