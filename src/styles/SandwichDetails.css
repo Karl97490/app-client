@@ -100,7 +100,7 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    background-color: pink;
+    /* background-color: pink; */
     width: 100%;
 }
 

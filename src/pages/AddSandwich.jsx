@@ -21,6 +21,7 @@ export const AddSandwich = () => {
     },
     image: null,
     description: null,
+    breadId: null,
   };
 
   const [stateForm, setStateForm] = useState(initialStateForm);
@@ -31,6 +32,7 @@ export const AddSandwich = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const section = e.target.dataset.section;
+    // console.log(name, value);
 
     if (section) {
       setStateForm((prev) => ({
@@ -58,8 +60,9 @@ export const AddSandwich = () => {
         `${import.meta.env.VITE_SERVER_URL}/sandwiches`,
         body,
       );
-      navigate("/sandwiches");
       setIsLoading(false);
+      console.log(response.data);
+      navigate("/sandwiches");
     } catch (error) {
       console.log(error);
       navigate("/error");

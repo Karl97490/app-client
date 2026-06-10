@@ -66,6 +66,26 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
           <legend>Ingredients</legend>
 
           <label>
+            Bread
+            <select
+              name="breadId"
+              // data-section="ingredients"
+              value={stateForm.breadId || ""}
+              onChange={onChange}
+            >
+              <option value="">None</option>
+              <option value="B1">The French Baguette</option>
+              <option value="B2">Brioche Bun</option>
+              <option value="B3">White Bread</option>
+              <option value="B4">Rye Bread</option>
+              <option value="B5">Country Wheat Baguette</option>
+              <option value="B6">Rustic Lyonnais Loaf</option>
+              <option value="B7">Belgian Sandwich Roll</option>
+              <option value="B8">Mediterranean Bakery Bread</option>
+            </select>
+          </label>
+
+          <label>
             Lettuce
             <select
               name="lettuce"
