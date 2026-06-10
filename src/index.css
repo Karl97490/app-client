@@ -1,3 +1,14 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, acid, forest;
+  root: ":root";
+}
+
+/* @utility btn {
+  @apply rounded-none;
+} */
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -8,12 +19,20 @@
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --sans: system-ui,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  --heading: system-ui,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  --mono: ui-monospace,
+    Consolas,
+    monospace;
 
   font: 16px var(--sans);
   letter-spacing: 0.18px;
@@ -60,7 +79,7 @@
   text-align: center;
   min-height: 100svh;
   box-sizing: border-box;
-  /* background-color: green; */
+  /* background-color: rgb(110, 110, 110); */
 }
 
 /* body {
@@ -116,9 +135,9 @@ h3 {
 }
 
 button {
-  align-self: center;
+  /* align-self: center; */
   padding: 0.75rem 1.25rem;
-  border: none;
-  border-radius: 6px;
+  /* border: none; */
+  /* border-radius: 6px; */
   cursor: pointer;
 }

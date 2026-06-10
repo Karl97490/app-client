@@ -24,7 +24,8 @@ export const AddSandwich = () => {
       unlikes: 0,
       avg_like: 0,
     },
-    image: null,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2IhYauSkWSHOi8sApOhS4324lrXdo10Nh0g&s",
     description: null,
     breadId: null,
   };

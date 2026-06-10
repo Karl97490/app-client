@@ -13,6 +13,7 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
             type="text"
             name="name"
             value={stateForm.name || ""}
+            required={true}
             onChange={onChange}
           />
         </label>
@@ -32,7 +33,7 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
           <input
             type="url"
             name="image"
-            value={stateForm.image || ""}
+            value={stateForm.image}
             onChange={onChange}
           />
         </label>
