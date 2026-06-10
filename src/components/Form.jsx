@@ -72,6 +72,7 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
               // data-section="ingredients"
               value={stateForm.breadId || ""}
               onChange={onChange}
+              required={true}
             >
               <option value="">None</option>
               <option value="B1">The French Baguette</option>

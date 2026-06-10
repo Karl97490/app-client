@@ -54,7 +54,30 @@ export const SandwichDetails = () => {
             <p className="description">{sandwich.description}</p>
           </div>
         </section>
+        <section className="vote-section">
+          <h2>Rate this sandwich</h2>
 
+          <div className="vote-widget">
+            <button className="vote-btn like-btn">
+              👍
+              <span>{sandwich.votes.likes}</span>
+            </button>
+
+            <button className="vote-btn dislike-btn">
+              👎
+              <span>{sandwich.votes.unlikes}</span>
+            </button>
+          </div>
+
+          <p className="vote-score">
+            {Math.round(
+              (sandwich.votes.likes /
+                (sandwich.votes.likes + sandwich.votes.unlikes)) *
+                100,
+            ) || 0}
+            % of users recommend this sandwich
+          </p>
+        </section>
         <section className="details-grid">
           <article className="details-card">
             <h2>Location</h2>

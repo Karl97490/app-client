@@ -19,6 +19,11 @@ export const AddSandwich = () => {
       vegies: null,
       sauce: null,
     },
+    votes: {
+      likes: 0,
+      unlikes: 0,
+      avg_like: 0,
+    },
     image: null,
     description: null,
     breadId: null,
