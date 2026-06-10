@@ -1,14 +1,15 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Comment } from "../components/Comment";
-
+import { Comments } from "../components/Comments";
 import axios from "axios";
 
 import "../styles/SandwichDetails.css";
 
 export const SandwichDetails = () => {
   const { sandwichId } = useParams();
+
   const [sandwich, setSandwich] = useState(null);
+
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -20,10 +21,10 @@ export const SandwichDetails = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}?_expand=bread&_embed=comments`,
+        `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}?_expand=bread`,
       );
-      setIsLoading(false);
       // console.log(response.data);
+      setIsLoading(false);
       setSandwich(response.data);
     } catch (error) {
       console.log(error);
@@ -92,14 +93,10 @@ export const SandwichDetails = () => {
             </ul>
           </article>
         </section>
+
         <section className="comments-section">
           <h2>Comments</h2>
-
-          <div className="comments-list">
-            {sandwich.comments.map((comment) => {
-              return <Comment key={comment.id} obj={comment} />;
-            })}
-          </div>
+          <Comments sandwichId={sandwich.id} />
         </section>
 
         <div className="btn-container">
@@ -116,3 +113,22 @@ export const SandwichDetails = () => {
     </div>
   );
 };
+
+// <section className="comments-section">
+//   <h2>Comments</h2>
+
+//   <div className="comments-list">
+//     <article className="comment-card">
+//       <img src="https://i.pravatar.cc/40?img=2" alt="Emma" className="avatar" />
+
+//       <div className="comment-content">
+//         <div className="comment-meta">
+//           <strong>Emma</strong>
+//           <span>1 week ago</span>
+//         </div>
+
+//         <p>The bread was excellent and the ingredients were very fresh.</p>
+//       </div>
+//     </article>
+//   </div>
+// </section>;
