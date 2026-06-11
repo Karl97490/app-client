@@ -1,7 +1,6 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/BreadDetails.css";
 
 export const BreadDetails = () => {
   const { breadId } = useParams();
@@ -33,60 +32,77 @@ export const BreadDetails = () => {
   }
 
   return (
-    <div className="bread-details-page">
-      <h1>This is BreadDetails component...</h1>
-      <main className="bread-details">
-        <section className="hero">
-          <img src={bread.image} alt={bread.name} className="hero-image" />
-
-          <div className="hero-content">
-            <h1>{bread.name}</h1>
-            <p className="bread-type">{bread.type}</p>
-            <h3>Description</h3>
-            <p className="description">{bread.description}</p>
-          </div>
-        </section>
-
-        <section className="details-grid">
-          <article className="details-card">
-            <h2>Origin</h2>
-
-            <dl>
-              <dt>Country</dt>
-              <dd>{bread.origin}</dd>
-
-              <dt>City</dt>
-              <dd>Placeholder</dd>
-            </dl>
-          </article>
-
-          <article className="details-card">
-            <h2>Characteristics</h2>
-
-            <dl>
-              <dt>Flour</dt>
-              <dd>Placeholder</dd>
-
-              <dt>Crust</dt>
-              <dd>Placeholder</dd>
-
-              <dt>Texture</dt>
-              <dd>Placeholder</dd>
-
-              <dt>Weight</dt>
-              <dd>Placeholder</dd>
-
-              <dt>Shape</dt>
-              <dd>Placeholder</dd>
-            </dl>
-          </article>
-        </section>
-        <div className="btn-container">
-          <Link to="/breads">
-            <button>Back</button>
-          </Link>
+    <div className="max-w-6xl mx-auto p-6 bg-red-500">
+      <section className="grid lg:grid-cols-[350px_1fr] gap-8">
+        {/* Image */}
+        <div className="card bg-base-100 shadow-xl">
+          <figure className="p-4">
+            <img
+              src="https://i.redd.it/6p8s2ry7jgx71.jpg"
+              alt={bread.name}
+              className="rounded-xl w-full h-80 object-cover"
+            />
+          </figure>
         </div>
-      </main>
+
+        {/* Infos */}
+        <div className="flex flex-col gap-6">
+          <div>
+            <h1 className="text-4xl font-bold">{bread.name}</h1>
+
+            <div className="mt-3 flex gap-2">
+              <div className="badge badge-primary badge-lg">{bread.type}</div>
+
+              <div className="badge badge-outline badge-lg">{bread.origin}</div>
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="card bg-base-100 shadow">
+            <div className="card-body">
+              <h2 className="card-title">Description</h2>
+
+              <p className="leading-relaxed">{bread.description}</p>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="stats stats-vertical lg:stats-horizontal shadow">
+            <div className="stat">
+              <div className="stat-title">Origin</div>
+
+              <div className="stat-value text-lg">{bread.origin}</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-title">Bread Type</div>
+
+              <div className="stat-value text-lg">{bread.type}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ingredients */}
+      <section className="card bg-base-100 shadow-xl mt-8">
+        <div className="card-body">
+          <h2 className="card-title">Ingredients</h2>
+
+          <div className="flex flex-wrap gap-3">
+            {bread.ingredients?.length > 0 ? (
+              bread.ingredients.map((ingredient) => (
+                <div key={ingredient} className="badge badge-outline badge-lg">
+                  {ingredient}
+                </div>
+              ))
+            ) : (
+              <div className="alert">
+                <span>No ingredients available.</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

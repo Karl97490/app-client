@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Comments } from "../components/Comments";
 import axios from "axios";
 
-import "../styles/SandwichDetails.css";
+// import "../styles/SandwichDetails.css";
 
 export const SandwichDetails = () => {
   const { sandwichId } = useParams();
@@ -37,121 +37,165 @@ export const SandwichDetails = () => {
   }
 
   return (
-    <div className="sandwich-details-page">
-      <h1>This is SandwichDetails component...</h1>
-      <main className="sandwich-details">
-        <section className="hero">
+    <div className="w-full pb-10">
+      <section className="hero">
+        <div className="hero-content flex-col lg:flex-row bg-red-100 gap-5">
           <img
-            src={sandwich.image}
+            src="https://static.vecteezy.com/ti/vecteur-libre/p1/50084123-pixel-art-burger-jeu-atout-conception-vectoriel.jpg"
+            className="max-w-xs rounded-lg shadow-xl"
             alt={sandwich.name}
-            className="hero-image"
           />
+          <div className="flex flex-col gap-3">
+            <div>
+              <h1 className="font-bold">{sandwich.name}</h1>
+              <p className="text-lg italic opacity-70 mt-1">
+                "{sandwich.nickname}"
+              </p>
+            </div>
+            <div className="flex flex-col">
+              <h3>Description</h3>
+              <p className="min-h-[5rem] py-5 flex items-center">
+                {sandwich.description}
+              </p>
+            </div>
+            <div className="stats shadow">
+              <div className="stat px-4">
+                <div className="stat-title">Origin</div>
+                <div className="stat-value text-lg">
+                  {sandwich.location.country}
+                </div>
+                <div className="stat-desc">{sandwich.location.city}</div>
+              </div>
 
-          <div className="hero-content">
-            <h1>{sandwich.name}</h1>
-            <p className="nickname">{sandwich.nickname}</p>
-            <h3>Description</h3>
-            <p className="description">{sandwich.description}</p>
+              <div className="stat px-4">
+                <div className="stat-title">Bread</div>
+                <div className="stat-value text-lg">{sandwich.bread.type}</div>
+                <div className="stat-desc">{sandwich.bread.origin}</div>
+              </div>
+            </div>
+            <section className="card bg-red-100 shadow">
+              <div className="card-body">
+                <h2 className="card-title mb-4 justify-center">Ingredients</h2>
+
+                <div className="overflow-x-auto">
+                  <table className="table table-zebra">
+                    <tbody>
+                      {sandwich.ingredients.lettuce && (
+                        <tr>
+                          <th className="w-1fr">🥬 Lettuce</th>
+                          <td className="bg-blue">
+                            {sandwich.ingredients.lettuce}
+                          </td>
+                        </tr>
+                      )}
+                      {sandwich.ingredients.cheese && (
+                        <tr>
+                          <th>🧀 Cheese</th>
+                          <td>{sandwich.ingredients.cheese}</td>
+                        </tr>
+                      )}
+                      {sandwich.ingredients.meat && (
+                        <tr>
+                          <th>🥩 Meat</th>
+                          <td>{sandwich.ingredients.meat}</td>
+                        </tr>
+                      )}
+                      {sandwich.ingredients.veggies && (
+                        <tr>
+                          <th>🥕 Veggies</th>
+                          <td>{sandwich.ingredients.veggies}</td>
+                        </tr>
+                      )}
+                      {sandwich.ingredients.sauce && (
+                        <tr>
+                          <th>🥫 Sauce</th>
+                          <td>{sandwich.ingredients.sauce || "None"}</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
-        <section className="vote-section">
-          <h2>Rate this sandwich</h2>
-
-          <div className="vote-widget">
-            <button className="vote-btn like-btn">
-              👍
-              <span>{sandwich.votes.likes}</span>
-            </button>
-
-            <button className="vote-btn dislike-btn">
-              👎
-              <span>{sandwich.votes.unlikes}</span>
-            </button>
-          </div>
-
-          <p className="vote-score">
-            {Math.round(
-              (sandwich.votes.likes /
-                (sandwich.votes.likes + sandwich.votes.unlikes)) *
-                100,
-            ) || 0}
-            % of users recommend this sandwich
-          </p>
-        </section>
-        <section className="details-grid">
-          <article className="details-card">
-            <h2>Location</h2>
-
-            <dl>
-              <dt>Country</dt>
-              <dd>{sandwich.location.country}</dd>
-
-              <dt>City</dt>
-              <dd>{sandwich.location.city}</dd>
-            </dl>
-          </article>
-
-          <article className="details-card">
-            <h2>Bread</h2>
-            <ul>
-              <li>Name: {sandwich.bread.name}</li>
-              <li>Type: {sandwich.bread.type}</li>
-              <li>Origin: {sandwich.bread.origin}</li>
-              <li>Ingredients: {}</li>
-            </ul>
-            <NavLink to={`/breads/details/${sandwich.bread.id}`}>
-              <button>More</button>
-            </NavLink>
-          </article>
-
-          <article className="details-card">
-            <h2>Ingredients</h2>
-
-            <ul>
-              <li>Lettuce: {sandwich.ingredients.lettuce}</li>
-              <li>Cheese: {sandwich.ingredients.cheese}</li>
-              <li>Meat: {sandwich.ingredients.meat}</li>
-              <li>Veggies: {sandwich.ingredients.veggies}</li>
-              <li>Sauce: {sandwich.ingredients.sauce}</li>
-            </ul>
-          </article>
-        </section>
-
-        <section className="comments-section">
-          <h2>Comments</h2>
-          <Comments sandwichId={sandwich.id} />
-        </section>
-
-        <div className="btn-container">
-          {sandwich.id.length > 2 && (
-            <NavLink to={`/sandwiches/edit/${sandwich.id}`}>
-              <button>Edit</button>
-            </NavLink>
-          )}
-          <Link to="/sandwiches">
-            <button>Back</button>
-          </Link>
         </div>
-      </main>
+      </section>
+
+      <div className="divider"></div>
+
+      <section className="card bg-red-100 w-[95%] m-auto shadow-md">
+        <h2 className="card-titlejustify-center">Community Rating</h2>
+        <div className="card-body ">
+          <div className="flex justify-center gap-10">
+            <button className="btn btn-success w-30 sm:max-w-xs h-12 ">
+              Like
+            </button>
+
+            <button className="btn btn-error w-30 sm:max-w-xs h-12 ">
+              Dislike
+            </button>
+          </div>
+
+          {/* <div className="flex justify-between text-sm opacity-70 mb-1">
+              <span>Community approval</span>
+
+              <span>
+                {Math.round(
+                  (sandwich.votes.likes /
+                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
+                    100,
+                ) || 0}
+                %
+              </span>
+            </div> */}
+          {/* <progress
+              className="progress progress-success w-full"
+              value={
+                Math.round(
+                  (sandwich.votes.likes /
+                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
+                    100,
+                ) || 0
+              }
+              max="100"
+            /> */}
+
+          <div className="stats stats-horizontal shadow bg-base-100 mt-4">
+            <div className="stat">
+              <div className="stat-title">Likes</div>
+              <div className="stat-value text-success">
+                {sandwich.votes.likes}
+              </div>
+            </div>
+            <div className="stat">
+              <div className="stat-title">Score</div>
+              <div className="stat-value">
+                {Math.round(
+                  (sandwich.votes.likes /
+                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
+                    100,
+                ) || 0}
+                %
+              </div>
+            </div>
+            <div className="stat">
+              <div className="stat-title">Dislikes</div>
+              <div className="stat-value text-error">
+                {sandwich.votes.unlikes}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="divider"></div>
+
+      <section className="card bg-red-100 shadow-md w-[95%] mx-auto">
+        <div className="card-body">
+          <h2 className="card-title justify-center">Comments</h2>
+          <Comments sandwichId={sandwichId} />
+        </div>
+      </section>
     </div>
   );
 };
-
-// <section className="comments-section">
-//   <h2>Comments</h2>
-
-//   <div className="comments-list">
-//     <article className="comment-card">
-//       <img src="https://i.pravatar.cc/40?img=2" alt="Emma" className="avatar" />
-
-//       <div className="comment-content">
-//         <div className="comment-meta">
-//           <strong>Emma</strong>
-//           <span>1 week ago</span>
-//         </div>
-
-//         <p>The bread was excellent and the ingredients were very fresh.</p>
-//       </div>
-//     </article>
-//   </div>
-// </section>;

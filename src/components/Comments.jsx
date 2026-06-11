@@ -58,7 +58,38 @@ export const Comments = ({ sandwichId }) => {
 
   return (
     <>
-      <form className="comment-form">
+      <div className="flex flex-col gap-3">
+        {comments.map((comment) => {
+          return <Comment key={comment.id} obj={comment} getData={getData} />;
+        })}
+      </div>
+      <div className="divider"></div>
+      <form className="flex flex-col gap-3">
+        <textarea
+          className="textarea textarea-bordered w-full"
+          placeholder="Type your comment..."
+          name="comment"
+          value={addComment}
+          onChange={handleChange}
+        />
+
+        <div className="flex justify-end">
+          <button
+            className="btn btn-primary  btn-sm"
+            type="submit"
+            name="send"
+            onClick={handleAddComment}
+          >
+            Post Comment
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
+
+{
+  /* <form className="comment-form">
         <img
           src="https://i.pravatar.cc/40"
           alt="User avatar"
@@ -91,7 +122,5 @@ export const Comments = ({ sandwichId }) => {
         {comments.map((comment) => {
           return <Comment key={comment.id} obj={comment} getData={getData} />;
         })}
-      </div>
-    </>
-  );
-};
+      </div> */
+}

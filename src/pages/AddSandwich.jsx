@@ -38,8 +38,8 @@ export const AddSandwich = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const section = e.target.dataset.section;
-    // console.log(name, value);
-
+    console.log(name, value);
+    console.log(section);
     if (section) {
       setStateForm((prev) => ({
         ...prev,
@@ -77,7 +77,7 @@ export const AddSandwich = () => {
 
   return (
     <div className="add-page">
-      <h2>This is AddSandwich component...</h2>
+      {/* <h2>This is AddSandwich component...</h2> */}
       <Form
         onChange={handleChange}
         stateForm={stateForm}

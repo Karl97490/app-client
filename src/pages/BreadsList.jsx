@@ -78,17 +78,21 @@ export const BreadsList = () => {
   }
 
   return (
-    <div className="breads-page">
+    <div className="w-full pb-10">
       <h2>This is BreadsList component...</h2>
-      <div className="inputs-container">
-        <button type="reset" id="reset-btn" onClick={handleReset}>
+      <fieldset className="fieldset flex flex-row justify-center w-[95%] m-auto p-4">
+        <button
+          type="reset"
+          className="btn btn-ghost bg-base-100"
+          onClick={handleReset}
+        >
           Reset
         </button>
         <Search query={querySearch} onChange={handleChange} />
         <Sort query={querySort} onChange={handleChange} />
-        <Filter query={queryFilter} onChange={handleChange} />
-      </div>
-      <section className="cards-container">
+        {/* <Filter query={queryFilter} onChange={handleChange} /> */}
+      </fieldset>
+      <section className="mx-5 rounded-4xl border-4 grid grid-cols-[repeat(auto-fit,24rem)] gap-y-4 gap-x-10 justify-center py-10 bg-base-100">
         {breads.map((bread) => {
           return <Cards key={bread.id} obj={bread} />;
         })}

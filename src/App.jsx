@@ -43,7 +43,7 @@ function App() {
           <Route path="/error" element={<ErrorPage />}></Route>
           <Route path="*" element={undefined}></Route>
 
-          <Route path="/testUI" element={<TestUI />}></Route>
+          {/* <Route path="/testUI" element={<TestUI />}></Route> */}
         </Routes>
       </div>
       <Footer />

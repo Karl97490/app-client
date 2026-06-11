@@ -58,41 +58,79 @@ export const Comment = ({ obj, getData }) => {
   };
 
   return (
-    <article className="comment-card">
-      <img src="https://i.pravatar.cc/40?img=1" alt="John" className="avatar" />
-      <div className="comment-content">
-        <div className="comment-meta">
-          <strong>{obj.author}</strong>
-          <span>{obj.created_date}</span>
+    <div className="chat chat-start gap-1">
+      <div className="chat-image avatar">
+        <div className="w-10 rounded-full">
+          <img
+            src="https://avatars.githubusercontent.com/u/22263436?v=4"
+            alt="User profile"
+          />
         </div>
-        <textarea
-          className={`comment-area ${isEditing ? "editing" : ""}`}
-          name="comment"
-          value={comment}
-          rows={2}
-          onChange={handleChange}
-          readOnly={!isEditing}
-        />
       </div>
 
-      {obj.id.length > 2 && (
-        <div className="btn-container">
-          {!isEditing ? (
-            <>
-              <button id="edit-btn" onClick={toggleEditBtn}>
-                Edit
-              </button>
-              <button id="dlt-btn" onClick={handleDeleteComment}>
-                Delete
-              </button>
-            </>
-          ) : (
-            <button id="send-btn" onClick={handleEditComment}>
-              Send
+      <div className="chat-header gap-2 font-semibold">
+        <span>{obj.author}</span>
+        <span className="opacity-70">{obj.created_date}</span>
+      </div>
+      <div className="indicator pr-5">
+        {obj.id.length > 2 && (
+          <>
+            <button
+              className="indicator-item bg-error text-[8px] rounded-full h-4 w-4"
+              onClick={handleDeleteComment}
+            >
+              ✘
             </button>
-          )}
-        </div>
-      )}
-    </article>
+            <button
+              className="indicator-item bg-info text-[8px] rounded-full h-4 w-4 mr-4"
+              onClick={undefined}
+            >
+              ✎
+            </button>
+          </>
+        )}
+
+        <div className="chat-bubble max-w-full">{obj.comment}</div>
+      </div>
+    </div>
   );
 };
+
+{
+  /* <article className="comment-card">
+  <img src="https://i.pravatar.cc/40?img=1" alt="John" className="avatar" />
+  <div className="comment-content">
+    <div className="comment-meta">
+      <strong>{obj.author}</strong>
+      <span>{obj.created_date}</span>
+    </div>
+    <textarea
+      className={`comment-area ${isEditing ? "editing" : ""}`}
+      name="comment"
+      value={comment}
+      rows={2}
+      onChange={handleChange}
+      readOnly={!isEditing}
+    />
+  </div>
+
+  {obj.id.length > 2 && (
+    <div className="btn-container">
+      {!isEditing ? (
+        <>
+          <button id="edit-btn" onClick={toggleEditBtn}>
+            Edit
+          </button>
+          <button id="dlt-btn" onClick={handleDeleteComment}>
+            Delete
+          </button>
+        </>
+      ) : (
+        <button id="send-btn" onClick={handleEditComment}>
+          Send
+        </button>
+      )}
+    </div>
+  )}
+</article>; */
+}
