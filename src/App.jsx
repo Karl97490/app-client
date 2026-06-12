@@ -10,7 +10,6 @@ import { BreadsList } from "./pages/BreadsList";
 import { BreadDetails } from "./pages/BreadDetails";
 import { AbouPage } from "./pages/AboutPage";
 import { Footer } from "./components/Footer";
-// import { LoadingPage } from "./pages/LoadingPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ErrorPage } from "./pages/ErrorPage";
 
@@ -44,8 +43,6 @@ function App() {
 
           <Route path="/error" element={<ErrorPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
-
-          {/* <Route path="/loading" element={<LoadingPage />}></Route> */}
         </Routes>
       </div>
       <Footer />

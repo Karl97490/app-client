@@ -20,11 +20,6 @@ export const SandwichesList = () => {
   const [queryFilter, setQueryFilter] = useState("");
   const [querySort, setQuerySort] = useState("");
 
-  // Check for multiple rendering component
-  // console.log(querySort);
-  // console.log(queryFilter);
-  // console.log(querySort);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +43,6 @@ export const SandwichesList = () => {
       let response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}${url}`,
       );
-      // console.log(response.data);
       setIsLoading(false);
       if (response.data.length) {
         setSandwiches(response.data);
@@ -82,7 +76,6 @@ export const SandwichesList = () => {
       const response = await axios.delete(
         `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwicheId}`,
       );
-      // console.log(response);
       setIsLoading(false);
       getData();
     } catch (error) {
@@ -96,29 +89,90 @@ export const SandwichesList = () => {
   }
 
   return (
-    <div className="w-full pb-10">
+    <div className="w-full bg-base-200 pb-10">
       <NavLink to="add">
         <SpeedDial />
       </NavLink>
-      <fieldset className="fieldset flex flex-row justify-center w-[95%] m-auto p-4">
+      <div className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] mx-auto pt-8 pb-4">
+        <h1 className="text-4xl font-bold">Sandwich Explorer</h1>
+
+        <p className="text-base-content/60 mt-2">
+          Discover, browse and manage sandwiches from around the world.
+        </p>
+      </div>
+      <fieldset
+        className="
+      fieldset
+      flex
+      flex-wrap
+      justify-center
+      items-center
+      gap-3
+      w-[95%]
+      md:w-[85%]
+      lg:w-[90%]
+      mx-auto
+      p-5
+      bg-base-100
+      border
+      border-base-300
+      rounded-3xl
+      shadow-lg
+    "
+      >
         <button
           type="reset"
-          className="btn btn-ghost bg-base-100"
+          className="btn btn-outline btn-primary"
           onClick={handleReset}
         >
           Reset
         </button>
+
         <Search query={querySearch} onChange={handleChange} />
+
         <Sort query={querySort} onChange={handleChange} />
+
         <Filter query={queryFilter} onChange={handleChange} />
       </fieldset>
 
-      <section className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] m-auto rounded-4xl border-2 grid grid-cols-[repeat(auto-fit,24rem)] gap-y-4 gap-x-10 justify-evenly py-10 px-1 bg-base-100">
-        {sandwiches.map((sandwich) => {
-          return (
-            <Cards key={sandwich.id} obj={sandwich} onDelete={handleDelete} />
-          );
-        })}
+      <div className="divider max-w-[90%] mx-auto my-8">Results</div>
+
+      <div className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] mx-auto mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+          <h2 className="text-xl font-semibold">Sandwich Collection</h2>
+
+          <div className="badge badge-primary badge-lg">
+            {sandwiches.length} sandwiches
+          </div>
+        </div>
+      </div>
+
+      <section
+        className="
+      max-w-[95%]
+      md:max-w-[85%]
+      lg:max-w-[90%]
+      mx-auto
+
+      grid
+      grid-cols-[repeat(auto-fit,24rem)]
+      justify-evenly
+
+      gap-y-8
+      gap-x-10
+
+      p-8
+
+      bg-base-100
+      border
+      border-base-300
+      rounded-3xl
+      shadow-xl
+    "
+      >
+        {sandwiches.map((sandwich) => (
+          <Cards key={sandwich.id} obj={sandwich} onDelete={handleDelete} />
+        ))}
       </section>
     </div>
   );

@@ -3,7 +3,7 @@ import Baguette from "../assets/images/baguette-logo.webp";
 
 export const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100/60 backdrop-blur-md border-b border-white/10 shadow-sm sticky top-0 z-50">
       <div className="navbar-start">
         <NavLink to="/" className="btn btn-ghost text-xl text-base-content">
           <img src={Baguette} alt="Logo" className="h-8 w-8" />
@@ -42,9 +42,6 @@ export const Navbar = () => {
                 <li>
                   <NavLink to="/sandwiches/add">Make Your Own</NavLink>
                 </li>
-                {/* <li>
-                  <a>Submenu 2</a>
-                </li> */}
               </ul>
             </li>
             <li>
