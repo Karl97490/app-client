@@ -38,174 +38,179 @@ export const SandwichDetails = () => {
   }
 
   return (
-    <div className="w-full py-8 px-5">
-      <section className="hero bg-red-500 p-8">
-        <div className="hero-content flex-col lg:flex-row gap-5 bg-green-100">
-          <div className="card bg-base-100 shadow-xl max-w-md">
-            <figure className="p-4">
-              <img
-                src="https://static.vecteezy.com/ti/vecteur-libre/p1/50084123-pixel-art-burger-jeu-atout-conception-vectoriel.jpg"
-                className="rounded-xl w-full object-cover"
-                alt={sandwich.name}
-              />
-            </figure>
-          </div>
-          <div className="flex flex-col gap-4 bg-blue-400 px-10 py-5">
-            <div>
-              <h1 className="font-bold">{sandwich.name}</h1>
-              <p className="text-lg italic opacity-70 mt-1">
-                {sandwich.nickname && `"${sandwich.nickname}"`}
-              </p>
+    <div className="w-full bg-base-200 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <section className="hero bg-base-100 rounded-3xl shadow-xl border border-base-300">
+          <div className="hero-content flex-col lg:flex-row gap-10 w-full p-6">
+            <div className="card bg-base-100 shadow-lg border border-base-300 w-full max-w-xl">
+              <figure className="p-5 max-w-2xl">
+                <img
+                  src={
+                    sandwich.image ||
+                    "https://static.vecteezy.com/ti/vecteur-libre/p1/50084123-pixel-art-burger-jeu-atout-conception-vectoriel.jpg"
+                  }
+                  alt={sandwich.name}
+                  className="rounded-2xl w-full object-cover"
+                />
+              </figure>
             </div>
-            <div className="card bg-base-100 shadow px-5">
-              <div className="card-body">
-                <h2 className="card-title justify-center">Description</h2>
-                <p className="text-left leading-relaxed">
-                  {sandwich.description}
-                </p>
+            <div className="flex flex-col gap-5 w-full">
+              <div>
+                <h1 className="text-4xl lg:text-5xl font-bold">
+                  {sandwich.name}
+                </h1>
+
+                {sandwich.nickname && (
+                  <p className="italic text-lg opacity-60 mt-2">
+                    "{sandwich.nickname}"
+                  </p>
+                )}
               </div>
-            </div>
-            <div className="stats stats-vertical lg:stats-horizontal shadow bg-base-100 w-full py-5">
-              <div className="stat">
-                <div className="stat-title">Origin</div>
-                <div className="stat-value text-lg">
-                  {sandwich.location.country}
+
+              <div className="card bg-base-100 border border-base-300 shadow-lg">
+                <div className="card-body">
+                  <h2 className="card-title text-primary justify-center">
+                    Description
+                  </h2>
+
+                  <p className="leading-relaxed">{sandwich.description}</p>
                 </div>
-                <div className="stat-desc">{sandwich.location.city}</div>
               </div>
-              <NavLink to={`/breads/details/${sandwich.breadId}`}>
-                <div className="stat px-4">
-                  <div className="stat-title">Bread</div>
+              <div className="stats stats-vertical lg:stats-horizontal bg-base-100 shadow-lg border border-base-300">
+                <div className="stat">
+                  <div className="stat-title">Country</div>
+
                   <div className="stat-value text-lg">
-                    {sandwich.bread.type}
+                    {sandwich.location.country}
                   </div>
-                  <div className="stat-desc">{sandwich.bread.origin}</div>
+
+                  <div className="stat-desc">{sandwich.location.city}</div>
                 </div>
-              </NavLink>
-            </div>
-            <section className="card bg-red-100 shadow">
-              <div className="card-body">
-                <h2 className="card-title mb-4 justify-center">Ingredients</h2>
 
-                <div className="overflow-x-auto">
-                  <table className="table table-zebra">
-                    <tbody>
-                      {sandwich.ingredients.lettuce && (
-                        <tr>
-                          <th className="w-1fr">🥬 Lettuce</th>
-                          <td className="bg-blue">
-                            {sandwich.ingredients.lettuce}
-                          </td>
-                        </tr>
-                      )}
-                      {sandwich.ingredients.cheese && (
-                        <tr>
-                          <th>🧀 Cheese</th>
-                          <td>{sandwich.ingredients.cheese}</td>
-                        </tr>
-                      )}
-                      {sandwich.ingredients.meat && (
-                        <tr>
-                          <th>🥩 Meat</th>
-                          <td>{sandwich.ingredients.meat}</td>
-                        </tr>
-                      )}
-                      {sandwich.ingredients.veggies && (
-                        <tr>
-                          <th>🥕 Veggies</th>
-                          <td>{sandwich.ingredients.veggies}</td>
-                        </tr>
-                      )}
-                      {sandwich.ingredients.sauce && (
-                        <tr>
-                          <th>🥫 Sauce</th>
-                          <td>{sandwich.ingredients.sauce || "None"}</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
+                <NavLink
+                  to={`/breads/details/${sandwich.breadId}`}
+                  className="hover:bg-base-200 transition"
+                >
+                  <div className="stat">
+                    <div className="stat-title">Bread</div>
+
+                    <div className="stat-value text-lg">
+                      {sandwich.bread.type}
+                    </div>
+
+                    <div className="stat-desc">{sandwich.bread.name}</div>
+                  </div>
+                </NavLink>
+              </div>
+              <section className="card bg-base-100 shadow-lg border border-base-300">
+                <div className="card-body">
+                  <h2 className="card-title text-primary justify-center">
+                    Ingredients
+                  </h2>
+
+                  <div className="overflow-x-auto">
+                    <table className="table">
+                      <tbody>
+                        {sandwich.ingredients.lettuce && (
+                          <tr>
+                            <th>🥬 Lettuce</th>
+                            <td>{sandwich.ingredients.lettuce}</td>
+                          </tr>
+                        )}
+
+                        {sandwich.ingredients.cheese && (
+                          <tr>
+                            <th>🧀 Cheese</th>
+                            <td>{sandwich.ingredients.cheese}</td>
+                          </tr>
+                        )}
+
+                        {sandwich.ingredients.meat && (
+                          <tr>
+                            <th>🥩 Meat</th>
+                            <td>{sandwich.ingredients.meat}</td>
+                          </tr>
+                        )}
+
+                        {sandwich.ingredients.veggies && (
+                          <tr>
+                            <th>🥕 Veggies</th>
+                            <td>{sandwich.ingredients.veggies}</td>
+                          </tr>
+                        )}
+
+                        {sandwich.ingredients.sauce && (
+                          <tr>
+                            <th>🥫 Sauce</th>
+                            <td>{sandwich.ingredients.sauce}</td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <div className="divider my-10">Community</div>
+
+        <section className="card bg-base-100 shadow-xl border border-base-300">
+          <div className="card-body gap-5">
+            <h2 className="card-title justify-center text-2xl">
+              Community Rating
+            </h2>
+
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
+              <button className="btn btn-success btn-wide">Like</button>
+
+              <button className="btn btn-error btn-wide">Dislike</button>
+            </div>
+
+            <div className="stats stats-vertical md:stats-horizontal shadow-lg border border-base-300 bg-base-100 mx-auto mt-4 w-full">
+              <div className="stat">
+                <div className="stat-title">Likes</div>
+
+                <div className="stat-value text-success">
+                  {sandwich.votes.likes}
                 </div>
               </div>
-            </section>
-          </div>
-        </div>
-      </section>
 
-      <div className="divider"></div>
+              <div className="stat">
+                <div className="stat-title">Approval</div>
 
-      <section className="card bg-red-100 w-[95%] m-auto shadow-md py-5 px-10">
-        <h2 className="card-title justify-center">Community Rating</h2>
-        <div className="card-body ">
-          <div className="flex justify-center gap-10">
-            <button className="btn btn-success w-30 sm:max-w-xs h-12 ">
-              Like
-            </button>
-
-            <button className="btn btn-error w-30 sm:max-w-xs h-12 ">
-              Dislike
-            </button>
-          </div>
-
-          {/* <div className="flex justify-between text-sm opacity-70 mb-1">
-              <span>Community approval</span>
-
-              <span>
-                {Math.round(
-                  (sandwich.votes.likes /
-                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
-                    100,
-                ) || 0}
-                %
-              </span>
-            </div> */}
-          {/* <progress
-              className="progress progress-success w-full"
-              value={
-                Math.round(
-                  (sandwich.votes.likes /
-                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
-                    100,
-                ) || 0
-              }
-              max="100"
-            /> */}
-
-          <div className="stats stats-horizontal shadow bg-base-100 mt-4">
-            <div className="stat">
-              <div className="stat-title">Likes</div>
-              <div className="stat-value text-success">
-                {sandwich.votes.likes}
+                <div className="stat-value text-primary">
+                  {Math.round(
+                    (sandwich.votes.likes /
+                      (sandwich.votes.likes + sandwich.votes.unlikes)) *
+                      100,
+                  ) || 0}
+                  %
+                </div>
               </div>
-            </div>
-            <div className="stat">
-              <div className="stat-title">Score</div>
-              <div className="stat-value">
-                {Math.round(
-                  (sandwich.votes.likes /
-                    (sandwich.votes.likes + sandwich.votes.unlikes)) *
-                    100,
-                ) || 0}
-                %
-              </div>
-            </div>
-            <div className="stat">
-              <div className="stat-title">Dislikes</div>
-              <div className="stat-value text-error">
-                {sandwich.votes.unlikes}
+
+              <div className="stat">
+                <div className="stat-title">Dislikes</div>
+
+                <div className="stat-value text-error">
+                  {sandwich.votes.unlikes}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="divider"></div>
+        <div className="divider my-10">Discussion</div>
 
-      <section className="card bg-red-100 shadow-md w-[95%] mx-auto">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Comments</h2>
-          <Comments sandwichId={sandwichId} />
-        </div>
-      </section>
+        <section className="card bg-base-100 shadow-xl border border-base-300">
+          <div className="card-body">
+            <h2 className="card-title justify-center text-2xl">Comments</h2>
+
+            <Comments sandwichId={sandwichId} />
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

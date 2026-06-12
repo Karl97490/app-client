@@ -9,6 +9,7 @@ import { Filter } from "../components/Filter";
 import { Sort } from "../components/Sort";
 import { NavLink } from "react-router-dom";
 import { LoadingPage } from "./LoadingPage";
+import { SpeedDial } from "../components/SpeedDial";
 import axios from "axios";
 
 export const SandwichesList = () => {
@@ -96,6 +97,9 @@ export const SandwichesList = () => {
 
   return (
     <div className="w-full pb-10">
+      <NavLink to="add">
+        <SpeedDial />
+      </NavLink>
       <fieldset className="fieldset flex flex-row justify-center w-[95%] m-auto p-4">
         <button
           type="reset"
@@ -110,9 +114,6 @@ export const SandwichesList = () => {
       </fieldset>
 
       <section className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] m-auto rounded-4xl border-2 grid grid-cols-[repeat(auto-fit,24rem)] gap-y-4 gap-x-10 justify-evenly py-10 px-1 bg-base-100">
-        {/* <NavLink to="add">
-          <button id="add-btn">Create your own</button>
-        </NavLink> */}
         {sandwiches.map((sandwich) => {
           return (
             <Cards key={sandwich.id} obj={sandwich} onDelete={handleDelete} />

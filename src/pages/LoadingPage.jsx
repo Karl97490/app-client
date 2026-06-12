@@ -6,7 +6,6 @@ import { CardsLoading } from "../components/CardsLoading";
 export const LoadingPage = ({ page }) => {
   return (
     <div className="w-full pb-10">
-      <h2>This is LoadingPage component...</h2>
       {page === "list" ? (
         <>
           <fieldset

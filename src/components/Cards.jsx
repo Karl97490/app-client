@@ -19,16 +19,25 @@ export const Cards = ({ obj, onDelete }) => {
         </figure>
       </NavLink>
       <div className="card-body gap-3">
-        <div className="flex justify-between items-center gap-1">
-          <h2 className="card-title text-left line-clamp-1 min-h-[1.8rem]">
-            {obj.name}
-          </h2>
-          {obj.id.length > 2 ? (
-            <div className="badge badge-secondary">New</div>
+        <div className="flex flex-col items-start">
+          <div className="flex justify-between items-center gap-1 w-full">
+            <h2 className="card-title text-left line-clamp-1 min-h-[1.8rem]">
+              {obj.name}
+            </h2>
+            {obj.id.length > 2 ? (
+              <div className="badge badge-secondary">New</div>
+            ) : (
+              <div className="badge badge-warning">
+                {obj.breadId ? "Classic" : "Original"}
+              </div>
+            )}
+          </div>
+          {obj.location ? (
+            <span className="text-base text-gray-500">
+              {obj.location.country}, {obj.location.city}
+            </span>
           ) : (
-            <div className="badge badge-warning">
-              {obj.breadId ? "Classic" : "Original"}
-            </div>
+            <span className="text-sm text-gray-500">{obj.origin}</span>
           )}
         </div>
         <div className="flex flex-col gap-1">
@@ -37,26 +46,28 @@ export const Cards = ({ obj, onDelete }) => {
             {obj.description}
           </p>
         </div>
-        <div className="grid grid-cols-[1fr_2.5fr] gap-2 place-items-center py-1">
-          <div className="badge badge-neutral font-medium text-neutral-content">
-            Ingredients
-          </div>
-          <div className="flex items-center justify-evenly w-full">
-            <div className="badge bg-green-100 border-green-400">
-              {obj.ingredients.lettuce && "🥬"}
+        <div className="grid grid-cols-[1fr_2.5fr] gap-3 place-items-center py-1">
+          {obj.breadId && (
+            <div className="badge badge-neutral font-medium text-neutral-content">
+              Ingredients
             </div>
-            <div className="badge bg-red-100 border-red-400">
-              {obj.ingredients.meat && "🥩"}
-            </div>
-            <div className="badge bg-yellow-100 border-yellow-400">
-              {obj.ingredients.cheese && "🧀"}
-            </div>
-            <div className="badge bg-orange-100 border-orange-400">
-              {obj.ingredients.vegies && "🥕"}
-            </div>
-            <div className="badge bg-gray-100 border-black">
-              {obj.ingredients.sauce && "🫙"}
-            </div>
+          )}
+          <div className="flex items-center justify-start gap-1 w-full">
+            {obj.ingredients.lettuce && (
+              <div className="badge bg-green-100 border-green-400">🥬</div>
+            )}
+            {obj.ingredients.meat && (
+              <div className="badge bg-red-100 border-red-400">🥩</div>
+            )}
+            {obj.ingredients.cheese && (
+              <div className="badge bg-yellow-100 border-yellow-400">🧀</div>
+            )}
+            {obj.ingredients.vegies && (
+              <div className="badge bg-orange-100 border-orange-400">🥕</div>
+            )}
+            {obj.ingredients.sauce && (
+              <div className="badge bg-gray-100 border-gray-400">🫙</div>
+            )}
           </div>
         </div>
         {obj.id.length > 2 && (

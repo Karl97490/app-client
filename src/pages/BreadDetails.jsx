@@ -33,78 +33,135 @@ export const BreadDetails = () => {
   }
 
   return (
-    <div className="w-full py-8 px-5">
-      <section className="grid lg:grid-cols-[auto_1fr] gap-8 bg-red-500 p-8">
-        {/* Image */}
-        <div className="card bg-base-100 shadow-xl max-w-md m-auto">
-          <figure className="p-4">
-            <img
-              src="https://i.redd.it/6p8s2ry7jgx71.jpg"
-              alt={bread.name}
-              className="rounded-xl w-full object-cover"
-            />
-          </figure>
-        </div>
-
-        {/* Infos */}
-        <div className="flex flex-col items-center gap-6 bg-green-400 px-10 py-5">
-          <div>
-            <h1 className="font-bold">{bread.name}</h1>
-
-            <div className="flex gap-2">
-              <div className="badge badge-primary badge-lg">{bread.type}</div>
-
-              <div className="badge badge-outline badge-lg">{bread.origin}</div>
-            </div>
-          </div>
-
-          {/* Description */}
-          <div className="card bg-base-100 shadow px-5">
-            <div className="card-body">
-              <h2 className="card-title justify-center">Description</h2>
-              <p className="text-left leading-relaxed">{bread.description}</p>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="stats stats-vertical lg:stats-horizontal shadow bg-base-100 w-full py-5">
-            <div className="stat">
-              <div className="stat-title">Origin</div>
-
-              <div className="stat-value text-lg">{bread.origin}</div>
+    <div className="w-full bg-base-200 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <section className="hero bg-base-100 rounded-3xl shadow-xl border border-base-300">
+          <div className="hero-content flex-col lg:flex-row gap-10 w-full p-6">
+            <div className="card bg-base-100 shadow-lg border border-base-300 w-full max-w-xl">
+              <figure className="p-5">
+                <img
+                  src={bread.image}
+                  alt={bread.name}
+                  className="rounded-2xl w-full object-cover"
+                />
+              </figure>
             </div>
 
-            <div className="stat">
-              <div className="stat-title">Bread Type</div>
+            <div className="flex flex-col gap-5 lg:gap-10 w-full">
+              <div>
+                <h1 className="text-4xl lg:text-5xl font-bold mb-2 lg:mb-5">
+                  {bread.name}
+                </h1>
 
-              <div className="stat-value text-lg">{bread.type}</div>
-            </div>
-          </div>
-        </div>
-      </section>
+                <div className="flex flex-wrap gap-2 mt-3 justify-center">
+                  <div className="badge badge-primary badge-lg">
+                    {bread.type}
+                  </div>
 
-      <div className="divider"></div>
-
-      {/* Ingredients */}
-      <section className="card bg-base-100 shadow-xl bg-blue-500 ">
-        <div className="card-body gap-7">
-          <h2 className="card-title justify-center">Ingredients</h2>
-
-          <div className="flex flex-wrap gap-3 justify-center">
-            {bread.ingredients?.length > 0 ? (
-              bread.ingredients.map((ingredient) => (
-                <div key={ingredient} className="badge badge-outline badge-lg">
-                  {ingredient}
+                  <div className="badge badge-outline badge-lg">
+                    {bread.origin}
+                  </div>
                 </div>
-              ))
+              </div>
+
+              <div className="card bg-base-100 border border-base-300 shadow-lg">
+                <div className="card-body">
+                  <h2 className="card-title text-primary justify-center">
+                    Description
+                  </h2>
+
+                  <p className="leading-relaxed">{bread.description}</p>
+                </div>
+              </div>
+
+              <div className="stats stats-vertical lg:stats-horizontal bg-base-100 shadow-lg border border-base-300">
+                <div className="stat">
+                  <div className="stat-title">Origin</div>
+
+                  <div className="stat-value text-lg">{bread.origin}</div>
+
+                  <div className="stat-desc">Traditional bread heritage</div>
+                </div>
+
+                <div className="stat">
+                  <div className="stat-title">Bread Type</div>
+
+                  <div className="stat-value text-lg">{bread.type}</div>
+
+                  <div className="stat-desc">Bakery category</div>
+                </div>
+
+                <div className="stat">
+                  <div className="stat-title">Ingredients</div>
+
+                  <div className="stat-value text-lg">
+                    {bread.ingredients?.length || 0}
+                  </div>
+
+                  <div className="stat-desc">Components</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="divider my-10">Composition</div>
+
+        <section className="card bg-base-100 shadow-xl border border-base-300">
+          <div className="card-body">
+            <h2 className="card-title justify-center text-2xl">Ingredients</h2>
+
+            {bread.ingredients?.length > 0 ? (
+              <div className="flex flex-wrap justify-center gap-3 mt-2">
+                {bread.ingredients.map((ingredient) => (
+                  <div
+                    key={ingredient}
+                    className="badge badge-outline badge-lg p-4"
+                  >
+                    {ingredient}
+                  </div>
+                ))}
+              </div>
             ) : (
-              <div className="alert">
-                <span>No ingredients available.</span>
+              <div className="flex justify-center">
+                <div className="alert alert-info max-w-md">
+                  <span>
+                    No ingredient information available for this bread.
+                  </span>
+                </div>
               </div>
             )}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <div className="divider my-10">Bakery Facts</div>
+
+        <section className="card bg-base-100 shadow-xl border border-base-300">
+          <div className="card-body">
+            <h2 className="card-title justify-center text-2xl">
+              Bread Profile
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="card bg-base-200">
+                <div className="card-body">
+                  <h3 className="font-bold text-primary">Origin</h3>
+
+                  <p>{bread.origin}</p>
+                </div>
+              </div>
+
+              <div className="card bg-base-200">
+                <div className="card-body">
+                  <h3 className="font-bold text-primary">Category</h3>
+
+                  <p>{bread.type}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
