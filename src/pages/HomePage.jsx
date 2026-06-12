@@ -1,5 +1,4 @@
 import "../styles/HomePage.css";
-import { Test } from "../../Test";
 
 export const HomePage = () => {
   return (
@@ -26,7 +25,6 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
-      {/* <Test></Test> */}
     </div>
   );
 };
