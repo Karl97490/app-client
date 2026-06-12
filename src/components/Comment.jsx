@@ -58,7 +58,7 @@ export const Comment = ({ obj, getData }) => {
   };
 
   return (
-    <div className="chat chat-start gap-1">
+    <div className="chat chat-start gap-2">
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
@@ -76,13 +76,13 @@ export const Comment = ({ obj, getData }) => {
         {obj.id.length > 2 && (
           <>
             <button
-              className="indicator-item bg-error text-[8px] rounded-full h-4 w-4"
+              className="indicator-item bg-error text-[8px] rounded-full h-4 w-4 mt-1"
               onClick={handleDeleteComment}
             >
               ✘
             </button>
             <button
-              className="indicator-item bg-info text-[8px] rounded-full h-4 w-4 mr-4"
+              className="indicator-item bg-info text-[8px] rounded-full h-4 w-4 mr-4 mt-1"
               onClick={undefined}
             >
               ✎

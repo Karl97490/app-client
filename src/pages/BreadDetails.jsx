@@ -111,7 +111,7 @@ export const BreadDetails = () => {
           <div className="card-body">
             <h2 className="card-title justify-center text-2xl">Ingredients</h2>
 
-            {bread.ingredients?.length > 0 ? (
+            {bread.ingredients.length > 0 ? (
               <div className="flex flex-wrap justify-center gap-3 mt-2">
                 {bread.ingredients.map((ingredient) => (
                   <div
@@ -124,7 +124,7 @@ export const BreadDetails = () => {
               </div>
             ) : (
               <div className="flex justify-center">
-                <div className="alert alert-info max-w-md">
+                <div className="alert max-w-md rounded-lg">
                   <span>
                     No ingredient information available for this bread.
                   </span>
