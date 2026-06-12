@@ -17,11 +17,6 @@ export const BreadsList = () => {
   const [queryFilter, setQueryFilter] = useState("");
   const [querySort, setQuerySort] = useState("");
 
-  // Check for multiple rendering component
-  // console.log(querySort);
-  // console.log(queryFilter);
-  // console.log(querySort);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,9 +30,7 @@ export const BreadsList = () => {
       if (querySearch) {
         params.push(`name_like=${querySearch}`);
       }
-      // if (queryFilter) {
-      //   params.push(`ingredients.${queryFilter}_ne=null`);
-      // }
+
       if (querySort) {
         params.push(`_sort=${querySort}`);
       }
@@ -45,7 +38,6 @@ export const BreadsList = () => {
       let response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}${url}`,
       );
-      // console.log(response.data);
       setIsLoading(false);
       if (response.data.length) {
         setBreads(response.data);
@@ -58,7 +50,6 @@ export const BreadsList = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    // console.log(name, value);
     if (name === "filter") {
       setQueryFilter(value);
     } else if (name === "search") {
@@ -79,23 +70,86 @@ export const BreadsList = () => {
   }
 
   return (
-    <div className="w-full pb-10">
-      <fieldset className="fieldset flex flex-row justify-center w-[95%] m-auto p-4">
+    <div className="w-full bg-base-200 pb-10">
+      <div className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] mx-auto pt-8 pb-4">
+        <h1 className="text-4xl font-bold">Bread Library</h1>
+
+        <p className="text-base-content/60 mt-2">
+          Explore breads used in sandwiches from around the world.
+        </p>
+      </div>
+
+      <fieldset
+        className="
+      fieldset
+      flex
+      flex-wrap
+      justify-center
+      items-center
+      gap-3
+      w-[95%]
+      md:w-[85%]
+      lg:w-[90%]
+      mx-auto
+      p-5
+      bg-base-100
+      border
+      border-base-300
+      rounded-3xl
+      shadow-lg
+    "
+      >
         <button
           type="reset"
-          className="btn btn-ghost bg-base-100"
+          className="btn btn-outline btn-primary"
           onClick={handleReset}
         >
           Reset
         </button>
+
         <Search query={querySearch} onChange={handleChange} />
+
         <Sort query={querySort} onChange={handleChange} />
-        {/* <Filter query={queryFilter} onChange={handleChange} /> */}
       </fieldset>
-      <section className="mx-5 rounded-4xl border-4 grid grid-cols-[repeat(auto-fit,24rem)] gap-y-4 gap-x-10 justify-center py-10 bg-base-100">
-        {breads.map((bread) => {
-          return <Cards key={bread.id} obj={bread} />;
-        })}
+
+      <div className="divider max-w-[90%] mx-auto my-8">Results</div>
+
+      <div className="max-w-[95%] md:max-w-[85%] lg:max-w-[90%] mx-auto mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+          <h2 className="text-xl font-semibold">Bread Collection</h2>
+
+          <div className="badge badge-primary badge-lg">
+            {breads.length} breads
+          </div>
+        </div>
+      </div>
+
+      <section
+        className="
+      max-w-[95%]
+      md:max-w-[85%]
+      lg:max-w-[90%]
+      mx-auto
+
+      grid
+      grid-cols-[repeat(auto-fit,24rem)]
+      justify-evenly
+
+      gap-y-8
+      gap-x-10
+
+      p-8
+
+      bg-base-100
+      border
+      border-base-300
+      rounded-3xl
+      shadow-xl
+    "
+      >
+        {breads.map((bread) => (
+          <Cards key={bread.id} obj={bread} />
+        ))}
       </section>
     </div>
   );
