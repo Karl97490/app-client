@@ -2,7 +2,13 @@ import "../styles/Form.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
+export const Form = ({
+  onChange,
+  stateForm,
+  onSubmit,
+  isCreating,
+  isEditing,
+}) => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <form onSubmit={onSubmit} className="card bg-base-100 shadow-xl">
@@ -217,10 +223,14 @@ export const Form = ({ onChange, stateForm, onSubmit, isLoading }) => {
 
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isCreating}
               className="btn btn-primary w-full sm:w-auto"
             >
-              {isLoading ? <span className="loading loading-spinner text-primary-content"></span> : "Create Sandwich"}
+              {isCreating ? (
+                <span className="loading loading-spinner text-primary-content"></span>
+              ) : (
+                "Create Sandwich"
+              )}
             </button>
           </div>
         </div>

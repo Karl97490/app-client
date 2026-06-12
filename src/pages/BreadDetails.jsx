@@ -1,5 +1,6 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { LoadingPage } from "./LoadingPage";
 import axios from "axios";
 
 export const BreadDetails = () => {
@@ -28,7 +29,7 @@ export const BreadDetails = () => {
   };
 
   if (isLoading) {
-    return <h1>We are loading the page...</h1>;
+    return <LoadingPage page="load" />;
   }
 
   return (

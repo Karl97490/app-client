@@ -1,6 +1,7 @@
 import { useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Comments } from "../components/Comments";
+import { LoadingPage } from "./LoadingPage";
 import axios from "axios";
 
 // import "../styles/SandwichDetails.css";
@@ -33,7 +34,7 @@ export const SandwichDetails = () => {
   };
 
   if (isLoading) {
-    return <h1>We are loading the page...</h1>;
+    return <LoadingPage page="load" />;
   }
 
   return (

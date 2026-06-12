@@ -91,7 +91,7 @@ export const SandwichesList = () => {
   };
 
   if (isLoading) {
-    return <LoadingPage />;
+    return <LoadingPage page="list" />;
   }
 
   return (

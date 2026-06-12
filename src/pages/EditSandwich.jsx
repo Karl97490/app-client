@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { LoadingPage } from "./LoadingPage";
 import { Form } from "../components/Form";
 import "../styles/EditSandwich.css";
 
 export const EditSandwich = () => {
   const [stateForm, setStateForm] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { sandwichId } = useParams();
   const navigate = useNavigate();
@@ -49,6 +51,7 @@ export const EditSandwich = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsEditing(true);
     e.preventDefault();
     const body = stateForm;
     try {
@@ -56,7 +59,7 @@ export const EditSandwich = () => {
         `${import.meta.env.VITE_SERVER_URL}/sandwiches/${sandwichId}`,
         body,
       );
-      setIsLoading(false);
+      setIsEditing(false);
       console.log(response);
       navigate("/sandwiches");
     } catch (error) {
@@ -66,16 +69,19 @@ export const EditSandwich = () => {
   };
 
   if (isLoading) {
-    return <h2>We're loading the page...</h2>;
+    return <LoadingPage page="load" />;
   }
 
+  if (isEditing) {
+    return <LoadingPage page="edit" />;
+  }
   return (
     <div className="edit-page">
       <Form
         onChange={handleChange}
         stateForm={stateForm}
         onSubmit={handleSubmit}
-        isLoading={isLoading}
+        isEditing={isEditing}
       />
     </div>
   );

@@ -75,7 +75,7 @@ export const BreadsList = () => {
   };
 
   if (isLoading) {
-    return <LoadingPage />;
+    return <LoadingPage page="list" />;
   }
 
   return (

@@ -2,6 +2,7 @@ import "../styles/AddSandwich.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "../components/Form";
+import { LoadingPage } from "./LoadingPage";
 import axios from "axios";
 
 export const AddSandwich = () => {
@@ -31,7 +32,7 @@ export const AddSandwich = () => {
   };
 
   const [stateForm, setStateForm] = useState(initialStateForm);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
 
   const navigate = useNavigate();
 
@@ -58,7 +59,7 @@ export const AddSandwich = () => {
   };
 
   const handleSubmit = async (e) => {
-    setIsLoading(true);
+    setIsCreating(true);
     e.preventDefault();
     const body = stateForm;
     try {
@@ -66,7 +67,7 @@ export const AddSandwich = () => {
         `${import.meta.env.VITE_SERVER_URL}/sandwiches`,
         body,
       );
-      setIsLoading(false);
+      setIsCreating(false);
       console.log(response.data);
       navigate("/sandwiches");
     } catch (error) {
@@ -75,13 +76,17 @@ export const AddSandwich = () => {
     }
   };
 
+  if (isCreating) {
+    return <LoadingPage page="add" />;
+  }
+
   return (
     <div className="add-page">
       <Form
         onChange={handleChange}
         stateForm={stateForm}
         onSubmit={handleSubmit}
-        isLoading={isLoading}
+        isCreating={isCreating}
       />
     </div>
   );
