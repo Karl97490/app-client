@@ -91,11 +91,7 @@ export const SandwichesList = () => {
   };
 
   if (isLoading) {
-    return (
-      <h2>
-        <LoadingPage />
-      </h2>
-    );
+    return <LoadingPage />;
   }
 
   return (
